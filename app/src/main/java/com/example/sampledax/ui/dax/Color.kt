@@ -1,4 +1,4 @@
-package com.example.sampledax.ui.theme
+package com.example.sampledax.ui.dax
 
 import androidx.compose.ui.graphics.Color
 

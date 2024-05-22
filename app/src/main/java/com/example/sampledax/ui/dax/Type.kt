@@ -1,4 +1,4 @@
-package com.example.sampledax.ui.theme
+package com.example.sampledax.ui.dax
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
