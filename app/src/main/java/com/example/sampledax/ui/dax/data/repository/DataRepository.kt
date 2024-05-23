@@ -7,7 +7,7 @@ import com.example.sampledax.ui.dax.data.service.RestApi
 import com.example.sampledax.ui.dax.domain.entity.IndexEntity
 import io.reactivex.Observable
 
-class DataRepository constructor(var mRestApi: RestApi, var mDataMapper: DataMapper) :
+class DataRepository(private var mRestApi: RestApi, private var mDataMapper: DataMapper) :
     IndexRepository {
 
     override fun getIndexData(): Observable<IndexEntity> {

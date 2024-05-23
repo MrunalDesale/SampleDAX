@@ -1,18 +1,14 @@
 package com.example.sampledax.ui.dax.data
 
-
 class ExceptionFactory {
-
     companion object {
-
         fun create(code: Int, message: String?): Exception {
-            when (code) {
+            return when (code) {
                 404 -> {
-                    return UserNotFoundException(message)
+                    NotFoundException(message)
                 }
-                else -> return UserNotFoundException(message)
+                else -> NotFoundException(message)
             }
         }
     }
-
 }

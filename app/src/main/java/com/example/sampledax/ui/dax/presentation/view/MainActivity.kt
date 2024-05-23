@@ -12,14 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-open class MainActivity : ComponentActivity() {
-}
+open class MainActivity : ComponentActivity()
 
 @Composable
 fun IndeterminateCircularIndicator(state: Boolean) {
-    val loading = state
 
-    if (!loading) return
+    if (!state) return
 
     Column(
         modifier = Modifier.fillMaxSize(),

@@ -14,12 +14,12 @@ import io.reactivex.Observable
 import retrofit2.Response
 
 
-class RestApiImp constructor(
-    var mNetworkService: NetworkService,
-    var mContext: Context
+class RestApiImp(
+    private var mNetworkService: NetworkService,
+    private var mContext: Context
 ) : RestApi {
 
-    val type = object : TypeToken<ErrorResponse>() {}.type
+    private val type = object : TypeToken<ErrorResponse>() {}.type
     val gson = Gson()
 
     @SuppressLint("MissingPermission")
@@ -30,7 +30,7 @@ class RestApiImp constructor(
     }
 
     override fun doIndexAPI(): Observable<Response<IndexResponse>> {
-        return Observable.create<Response<IndexResponse>> { emitter ->
+        return Observable.create { emitter ->
 
             if (!isThereInternetConnection()) {
                 emitter.onError(NetworkUnavailableException())
@@ -62,5 +62,4 @@ class RestApiImp constructor(
             }
         }
     }
-
 }

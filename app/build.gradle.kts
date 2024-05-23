@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-    val lifecycle_version = "2.2.0"
+    val lifecycleVersion = "2.2.0"
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -67,11 +67,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //vewmodel
-    implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.7.0")
     implementation("com.squareup.retrofit2:converter-gson:2.6.0")
@@ -84,23 +79,13 @@ dependencies {
     implementation("com.squareup.retrofit2:adapter-rxjava2:2.7.0")
 
     //di
-//    implementation("org.koin:koin-androidx-viewmodel:3.2.0")
-//    implementation("org.koin:koin-androidx-scope:3.2.0")
-//    implementation("org.koin:koin-android:3.2.0")
     implementation("io.insert-koin:koin-android:3.2.0")
-//    implementation("io.insert-koin:koin-android-compat:3.2.0")
-
 
     //viewmodel
-//    val lifecycle_version = "2.3.0"
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.core:core-ktx:1.3.2")
-//    implementation("androidx.compose.runtime:runtime-livedata:$lifecycle_version")
     implementation("androidx.compose.runtime:runtime-livedata:1.6.7")
 
-    /*implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")*/
 }

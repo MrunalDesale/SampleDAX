@@ -7,8 +7,10 @@ import com.example.sampledax.ui.dax.domain.entity.IndexEntity
 import retrofit2.Response
 
 
+/*
+* Data Mapper class to transform Response class to Entity Class
+* */
 
-//Data Mapper class to transform Response class to Entity Class
 class DataMapper {
 
 
@@ -21,11 +23,11 @@ class DataMapper {
         indexEntity.isin = indexResponse?.instrument?.isin
         indexEntity.name = indexResponse?.instrument?.name
 
-        if(indexResponse?.profile != null)
-            if(indexResponse.profile!!.isNotEmpty())
+        if (indexResponse?.profile != null)
+            if (indexResponse.profile!!.isNotEmpty())
                 indexEntity.profil = indexResponse.profile!![0].value
 
-        if(indexResponse?.indicesTopFlopEntityList != null) {
+        if (indexResponse?.indicesTopFlopEntityList != null) {
             if (indexResponse.indicesTopFlopEntityList!!.numberTop!! > 0) {
                 indexEntity.topList = ArrayList()
                 indexResponse.indicesTopFlopEntityList!!.topList?.forEach {
@@ -37,7 +39,7 @@ class DataMapper {
                     indexEntity.topList?.add(topList)
                 }
             }
-            if(indexResponse.indicesTopFlopEntityList!!.numberFlop!! > 0) {
+            if (indexResponse.indicesTopFlopEntityList!!.numberFlop!! > 0) {
                 indexEntity.flopList = ArrayList()
                 indexResponse.indicesTopFlopEntityList!!.flopList?.forEach {
                     val flopList = FlopList()
@@ -49,7 +51,6 @@ class DataMapper {
                 }
             }
         }
-
         return indexEntity
     }
 }

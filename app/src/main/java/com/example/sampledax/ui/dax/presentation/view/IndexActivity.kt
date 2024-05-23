@@ -3,6 +3,7 @@ package com.example.sampledax.ui.dax.presentation.view
 import android.icu.text.DecimalFormat
 import android.os.Bundle
 import android.text.TextUtils
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.animateContentSize
@@ -27,10 +28,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.sampledax.R
 import com.example.sampledax.ui.dax.data.response.FlopList
 import com.example.sampledax.ui.dax.data.response.TopList
 import com.example.sampledax.ui.dax.presentation.enums.Status
@@ -40,11 +44,11 @@ import com.example.sampledax.ui.dax.presentation.viewmodel.IndexViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
- *
+ * IndexActivity shows information of an Index, tops and flops index with percentage performance.
  * */
 
 class IndexActivity : MainActivity() {
-    val mIndexViewModel: IndexViewModel by viewModel()
+    private val mIndexViewModel: IndexViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -55,6 +59,11 @@ class IndexActivity : MainActivity() {
     }
 }
 
+
+/*
+* Following method observe response state and set information of index on a card.
+* It also shows error toast in case of error.
+* */
 @Composable
 fun SetIndexData(indexViewModel: IndexViewModel) {
     val data by indexViewModel.getIndexData().observeAsState()
@@ -72,6 +81,7 @@ fun SetIndexData(indexViewModel: IndexViewModel) {
             }
 
             Status.ERROR -> {
+                Toast.makeText(LocalContext.current,"Something went wrong..!",Toast.LENGTH_LONG).show()
                 IndeterminateCircularIndicator(false)
             }
 
@@ -82,6 +92,9 @@ fun SetIndexData(indexViewModel: IndexViewModel) {
     }
 }
 
+/*
+* This method sets card with index information.
+* */
 @Composable
 fun SetCardView(
     name: String?,
@@ -115,7 +128,7 @@ fun SetCardView(
                     elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
                 ) {
                     Text(
-                        text = "Tops & Flops",
+                        text = stringResource(id = R.string.text_tops_and_flops),
                         fontSize = 16.sp,
                         modifier = Modifier.padding(10.dp)
                     )
@@ -135,7 +148,7 @@ fun SetCardView(
                     elevation = CardDefaults.cardElevation(defaultElevation = 5.dp),
                 ) {
                     Text(
-                        text = "Profil",
+                        text = stringResource(id = R.string.text_profile),
                         fontSize = 16.sp,
                         modifier = Modifier.padding(start = 10.dp, top = 10.dp, bottom = 0.dp)
                     )
@@ -145,6 +158,9 @@ fun SetCardView(
     }
 }
 
+/*
+* Following method shows top 3 index with percentage gain
+* */
 @Composable
 fun AddDynamicTopIndex(list: ArrayList<TopList>) {
     if (list.size > 0) {
@@ -174,6 +190,9 @@ fun AddDynamicTopIndex(list: ArrayList<TopList>) {
     }
 }
 
+/*
+* Following method shows flop 3 index with percentage loss
+* */
 @Composable
 fun AddDynamicFlopIndex(list: ArrayList<FlopList>) {
     if (list.size > 0) {
@@ -203,7 +222,9 @@ fun AddDynamicFlopIndex(list: ArrayList<FlopList>) {
         }
     }
 }
-
+/*
+* Following method contains logic for expandable text view of profile detail.
+* */
 @Composable
 fun ExpandableText(modifier: Modifier = Modifier, text: String) {
     var isExpanded by remember { mutableStateOf(false) }
@@ -248,5 +269,4 @@ fun ExpandableText(modifier: Modifier = Modifier, text: String) {
         fontSize = 16.sp,
         overflow = TextOverflow.Ellipsis
     )
-
 }

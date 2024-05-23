@@ -9,9 +9,7 @@ import org.koin.core.context.startKoin
 
 class IndexApplication : Application() {
     companion object {
-
         private lateinit var instance: IndexApplication
-        fun getInstance(): IndexApplication = instance
     }
 
     override fun onCreate() {

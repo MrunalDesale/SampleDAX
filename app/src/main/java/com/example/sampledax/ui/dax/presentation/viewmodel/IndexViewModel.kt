@@ -1,6 +1,5 @@
 package com.example.sampledax.ui.dax.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.sampledax.ui.dax.domain.entity.IndexEntity
@@ -9,7 +8,7 @@ import com.example.sampledax.ui.dax.presentation.enums.ResponseWrapper
 import com.example.sampledax.ui.dax.presentation.model.IndexModel
 import io.reactivex.observers.DisposableObserver
 
-class IndexViewModel(var indexUC: IndexUC) : ViewModel() {
+class IndexViewModel(private var indexUC: IndexUC) : ViewModel() {
     var mMutableLiveDataIndexModel = MutableLiveData<ResponseWrapper<IndexModel>>()
 
     fun getIndexData() = mMutableLiveDataIndexModel
@@ -23,12 +22,10 @@ class IndexViewModel(var indexUC: IndexUC) : ViewModel() {
             }
 
             override fun onError(e: Throwable) {
-                Log.d("TAG--> ", "onError" + e.message)
                 mMutableLiveDataIndexModel.value = ResponseWrapper.error(null, e.message)
             }
 
             override fun onComplete() {
-                Log.d("TAG--> ", "onComplete")
             }
 
         }, null)

@@ -16,7 +16,10 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
-
+/*
+* Below class use to declare services and use cases in module.
+*
+* */
 val networkModule = module {
     single {
         createRetrofit(

@@ -6,12 +6,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
-
-
-
 abstract class UseCase<T, Param> {
 
-    val disposables: CompositeDisposable by lazy {
+    private val disposables: CompositeDisposable by lazy {
         CompositeDisposable()
     }
 
@@ -21,9 +18,6 @@ abstract class UseCase<T, Param> {
         val observable: Observable<T> = build(param)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-
         disposables.add(observable.subscribeWith(observer))
-
     }
-
 }
