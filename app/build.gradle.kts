@@ -97,6 +97,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
     implementation("androidx.core:core-ktx:1.3.2")
+//    implementation("androidx.compose.runtime:runtime-livedata:$lifecycle_version")
+    implementation("androidx.compose.runtime:runtime-livedata:1.6.7")
 
     /*implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")

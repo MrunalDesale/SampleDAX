@@ -2,7 +2,6 @@ package com.example.sampledax.ui.dax.data.mapper
 
 import com.example.sampledax.ui.dax.data.response.FlopList
 import com.example.sampledax.ui.dax.data.response.IndexResponse
-import com.example.sampledax.ui.dax.data.response.IndicesTopFlopEntityList
 import com.example.sampledax.ui.dax.data.response.TopList
 import com.example.sampledax.ui.dax.domain.entity.IndexEntity
 import retrofit2.Response
@@ -28,17 +27,23 @@ class DataMapper {
 
         if(indexResponse?.indicesTopFlopEntityList != null) {
             if (indexResponse.indicesTopFlopEntityList!!.numberTop > 0) {
+                indexEntity.topList = ArrayList()
                 indexResponse.indicesTopFlopEntityList.topList?.forEach {
                     val topList = TopList()
-                    topList.instrument.name = it.instrument.name
+                    val instrument = TopList.Instrument()
+                    instrument.name = it.instrument?.name
+                    topList.instrument = instrument
                     topList.performancePct = it.performancePct
                     indexEntity.topList?.add(topList)
                 }
             }
             if(indexResponse.indicesTopFlopEntityList!!.numberFlop > 0) {
+                indexEntity.flopList = ArrayList()
                 indexResponse.indicesTopFlopEntityList.flopList?.forEach {
                     val flopList = FlopList()
-                    flopList.instrument.name = it.instrument.name
+                    val instrument = FlopList.Instrument()
+                    instrument.name = it.instrument?.name
+                    flopList.instrument = instrument
                     flopList.performancePct = it.performancePct
                     indexEntity.flopList?.add(flopList)
                 }

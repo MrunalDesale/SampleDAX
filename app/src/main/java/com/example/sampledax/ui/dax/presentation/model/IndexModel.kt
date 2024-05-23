@@ -18,11 +18,13 @@ class IndexModel {
         this.wkn = wkn
         this.isin = isin
         this.profil = profil
+        this.topList = topList
+        this.flopList = flopList
     }
 
     @SerializedName("name")
     @Expose
-    private var name: String? = null
+    var name: String? = null
 
     @SerializedName("wkn")
     @Expose
