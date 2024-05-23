@@ -22,13 +22,13 @@ class DataMapper {
         indexEntity.name = indexResponse?.instrument?.name
 
         if(indexResponse?.profile != null)
-            if(indexResponse.profile!!.size > 0)
-                indexEntity.profil = indexResponse.profile[0].value
+            if(indexResponse.profile!!.isNotEmpty())
+                indexEntity.profil = indexResponse.profile!![0].value
 
         if(indexResponse?.indicesTopFlopEntityList != null) {
-            if (indexResponse.indicesTopFlopEntityList!!.numberTop > 0) {
+            if (indexResponse.indicesTopFlopEntityList!!.numberTop!! > 0) {
                 indexEntity.topList = ArrayList()
-                indexResponse.indicesTopFlopEntityList.topList?.forEach {
+                indexResponse.indicesTopFlopEntityList!!.topList?.forEach {
                     val topList = TopList()
                     val instrument = TopList.Instrument()
                     instrument.name = it.instrument?.name
@@ -37,9 +37,9 @@ class DataMapper {
                     indexEntity.topList?.add(topList)
                 }
             }
-            if(indexResponse.indicesTopFlopEntityList!!.numberFlop > 0) {
+            if(indexResponse.indicesTopFlopEntityList!!.numberFlop!! > 0) {
                 indexEntity.flopList = ArrayList()
-                indexResponse.indicesTopFlopEntityList.flopList?.forEach {
+                indexResponse.indicesTopFlopEntityList!!.flopList?.forEach {
                     val flopList = FlopList()
                     val instrument = FlopList.Instrument()
                     instrument.name = it.instrument?.name
